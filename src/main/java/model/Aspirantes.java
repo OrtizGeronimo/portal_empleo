@@ -6,4 +6,5 @@ public class Aspirantes {
     public int edad;
     public String mail;
     public String deporte;
+    public boolean crack; 
 }
