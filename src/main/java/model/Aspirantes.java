@@ -5,4 +5,5 @@ public class Aspirantes {
     public String apellido;
     public int edad;
     public String mail;
+    public String deporte;
 }
