@@ -32,12 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .clearAuthentication(true) .permitAll();
         }
 
-@Autowired
-public UsuarioService usuarioService;
+        @Autowired
+        public UsuarioService usuarioService;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder());}
+        @Autowired
+        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+            auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder());
+        }
 
 
 
