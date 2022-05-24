@@ -5,22 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
+@Entity
 @Data
+@Table(name = "habilidad")
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "usuario")
-public class Usuario {
-
+public class Habilidad {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String username;
-    private String password;
-    private String permiso;
-    private boolean isActive;
+    private String nombre;
+    private Date fechaBaja;
 
-
+    //Faltaria ver como mapeamos el tipo
 }

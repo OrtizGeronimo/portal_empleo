@@ -19,4 +19,11 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String razonSocial;
+    private String cuil;
+    private int telefono;
+
+    @OneToMany(mappedBy = "empresa")
+    private List<Anuncio> anuncios;
+
 }
