@@ -14,6 +14,10 @@ import javax.persistence.*;
 
 public class Aspirante {
 
+    /*
+    Hay que ver como mapeamos los estados, como String o entidades aparte
+     */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -19,8 +20,12 @@ public class Anuncio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String titulo;
+    private String descripcion;
+    private Date fechaPublicacion;
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_empresa")
+    @JoinColumn(name = "fk_empresa", nullable = false)
     private Empresa empresa;
 
 }
