@@ -1,5 +1,6 @@
 package com.example.portal_empleo.domain;
 
+<<<<<<< HEAD
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,7 @@ public class Habilidad {
     private Date fechaBaja;
 
     //Faltaria ver como mapeamos el tipo
+=======
+public class Habilidad {
+>>>>>>> rama_geronimo
 }
