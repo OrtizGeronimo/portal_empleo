@@ -29,4 +29,7 @@ public class Aspirante {
     private int edad;
 
     private int dni;
+
+    @OneToOne
+    private Usuario usuario;
 }
