@@ -4,7 +4,10 @@ package com.example.portal_empleo.controllers;
 import com.example.portal_empleo.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -17,14 +20,17 @@ public class AuthController {
     @GetMapping("/login")
     public String loginPrincipal(){return "login";}
 
-    @GetMapping("/hola")
-    public String hola(){
-        return "hola";
+    @GetMapping("/inicio")
+    public String inicio(){
+        return "Views/inicio";
     }
-    @GetMapping("/hola2")
-    public String hola2(){
-        return "hola2";
+
+    @PostMapping("/busqueda")
+    public String busqueda(Model model) {
+        model.addAttribute("busqueda", "Hola mundo");
+        return "Views/hola2";
     }
+
 
 
 
