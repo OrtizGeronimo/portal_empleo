@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests().antMatchers("/**.js","/**.css","/**.ico")
                     .permitAll() .anyRequest().authenticated()
                     .and()
-                    .formLogin().loginPage("/login").loginProcessingUrl("/logincheck").defaultSuccessUrl("/hola").usernameParameter("username").passwordParameter("password")
+                    .formLogin().loginPage("/login").loginProcessingUrl("/logincheck").defaultSuccessUrl("/inicio").usernameParameter("username").passwordParameter("password")
                     .permitAll()
                     .and()
                     .logout() .invalidateHttpSession(true)
