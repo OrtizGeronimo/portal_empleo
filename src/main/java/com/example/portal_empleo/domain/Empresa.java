@@ -23,6 +23,10 @@ public class Empresa {
     private String cuil;
     private int telefono;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_usuario")
+    private Usuario usuario;
+
     @OneToMany(mappedBy = "empresa")
     private List<Anuncio> anuncios;
 

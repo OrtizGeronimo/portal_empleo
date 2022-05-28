@@ -20,6 +20,7 @@ public class Habilidad {
 
     private String nombre;
     private Date fechaBaja;
+    private String tipoHabilidad;
+    private String estadoHabilidad;
 
-    //Faltaria ver como mapeamos el tipo
 }

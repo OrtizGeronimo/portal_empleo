@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,6 +32,16 @@ public class Aspirante {
 
     private int dni;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_usuario")
     private Usuario usuario;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "aspirante_skill",
+            joinColumns = @JoinColumn(name = "aspirante_fk"),
+            inverseJoinColumns = @JoinColumn(name = "habilidad_fk")
+    )
+    private List<Habilidad> habilidades = new ArrayList<Habilidad>();
+
 }

@@ -21,6 +21,7 @@ public class Usuario {
     private String password;
     private String permiso;
     private boolean isActive;
+    private String userState;
 
 
 }
