@@ -88,3 +88,15 @@ button:hover{
 #chk:checked ~ .signup label{
     transform: scale(.6);
 }
+.picker{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 25%;
+}
+
+.picker label, .picker input{
+    margin: initial;
+    width: initial;
+    height: initial;
+    font-size: initial;
+}

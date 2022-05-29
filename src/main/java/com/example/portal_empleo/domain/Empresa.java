@@ -18,7 +18,7 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    
     private String razonSocial;
     private String cuil;
     private int telefono;

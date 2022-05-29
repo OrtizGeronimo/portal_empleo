@@ -10,10 +10,21 @@
     <input type="checkbox" id="chk" aria-hidden="true">
 
     <div class="signup">
-        <form>
+        <form method="post" th:action="@{/register}">
             <label for="chk" aria-hidden="true">Registrarse</label>
-            <input type="text" name="txt" placeholder="User name" required="">
-            <input type="email" name="email" placeholder="Email" required="">
+
+            <div class="picker">
+                <input type="radio" id="asp" name="fav_language" value="Aspirante" onclick="changeForm('asp')">
+
+                <label for="asp">Aspirante</label>
+                <input type="radio" id="emp" name="fav_language" value="Empresa" onclick="changeForm('emp')">
+                <label for="emp">Empresa</label>
+            </div>
+            <input class="input" id="0" type="text" name="nombre" placeholder="Nombre">
+            <input class="input" id="1" type="text" name="apellido" placeholder="Apellido">
+            <input class="input" id="2" type="date" name="fnac" placeholder="Fecha de Nacimiento" required="">
+            <input class="input" id="3" type="text" name="txt" placeholder="DNI" required="">
+            <input type="text" name="txt" placeholder="Email" required="">
             <input type="password" name="pswd" placeholder="Password" required="">
             <button>Sign up</button>
         </form>
@@ -28,5 +39,6 @@
         </form>
     </div>
 </div>
+<script th:src="@{/script.js}"></script>
 </body>
 </html>
