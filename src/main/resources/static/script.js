@@ -2,6 +2,7 @@
 function changeForm(tipo){
     const inputs = document.querySelectorAll(".input");
     if (tipo == "asp"){
+        document["register-form"].action = "/candidate/register";
         inputs.forEach((input) => {
             switch (input.id) {
                 case "0":
@@ -26,6 +27,7 @@ function changeForm(tipo){
             }
         })
     } else if (tipo == "emp"){
+        document["register-form"].action = "/company/register";
         inputs.forEach((input) => {
             switch (input.id) {
                 case "0":
