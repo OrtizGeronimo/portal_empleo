@@ -23,8 +23,6 @@ public class Habilidad {
     private String tipoHabilidad;
     private String estadoHabilidad;
 
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> master
+
