@@ -21,7 +21,7 @@ public class AspiranteController {
             return "/error";
         }
         aspiranteService.save(aspirante, email, psw);
-        return "Views/inicio";
+        return "/Views/inicio";
     }
 }
 
