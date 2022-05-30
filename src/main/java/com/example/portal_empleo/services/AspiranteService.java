@@ -6,6 +6,8 @@ import com.example.portal_empleo.repositories.AspiranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AspiranteService {
 
@@ -22,6 +24,10 @@ public class AspiranteService {
         }
         return false;
 
+    }
+
+    public List<Aspirante> findAll(){
+        return aspiranteRepository.findAll();
     }
 
 
