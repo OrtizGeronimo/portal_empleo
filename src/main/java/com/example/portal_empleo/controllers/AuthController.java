@@ -1,7 +1,10 @@
 package com.example.portal_empleo.controllers;
 
 
+import com.example.portal_empleo.domain.Aspirante;
+import com.example.portal_empleo.domain.Empresa;
 import com.example.portal_empleo.services.UsuarioService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +21,11 @@ public class AuthController {
     UsuarioService usuarioService;
 
     @GetMapping("/login")
-    public String loginPrincipal(){return "login";}
+    public String loginPrincipal(Model model){
+        model.addAttribute("aspirante", new Aspirante());
+        model.addAttribute("empresa", new Empresa());
+        return "login";
+    }
 
     @GetMapping("/inicio")
     public String inicio(){

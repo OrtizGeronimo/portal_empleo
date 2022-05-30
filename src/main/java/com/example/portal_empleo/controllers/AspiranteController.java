@@ -16,12 +16,12 @@ public class AspiranteController {
     AspiranteService aspiranteService;
 
     @PostMapping("/register")
-    public String register(@RequestBody Aspirante aspirante) {
-        if (usuarioService.findByUsername(aspirante.getUsuario().getUsername()) == null) {
+    public String register(@ModelAttribute Aspirante aspirante, @RequestParam("email") String email, @RequestParam("psw") String psw) {
+        if (usuarioService.findByUsername(email) != null) {
             return "/error";
         }
-        aspiranteService.save(aspirante);
-        return "/index";
+        aspiranteService.save(aspirante, email, psw);
+        return "Views/inicio";
     }
 }
 
