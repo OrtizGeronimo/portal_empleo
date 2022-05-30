@@ -28,9 +28,9 @@ public class Aspirante {
 
     private String apellido;
 
-    private int edad;
+    private Integer edad;
 
-    private int dni;
+    private Integer dni;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usuario")

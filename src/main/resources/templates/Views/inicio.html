@@ -8,11 +8,88 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../inicio-styles.css">
     <title>Inicio</title>
 </head>
 <body>
     <nav th:replace="Components/navbar :: nav_bar"></nav>
-    <h1>INICIO</h1>
+
+    <div class="title">
+        <h1>Usuarios - Aspirantes</h1>
+    </div>
+
+    <!------------------------->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                            <tr>
+                                <th><span>Nombre</span></th>
+                                <th><span>Email</span></th>
+                                <th class="text-center"><span>Estado</span></th>
+                                <th><span>DNI</span></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="aspirante : ${aspirantes}">
+                                <td>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                    <a href="#" class="user-link" th:text="${aspirante.nombre} + ' ' + ${aspirante.apellido}">Mila Kunis</a>
+                                    <span class="user-subhead">Admin</span>
+                                </td>
+                                <td th:text="${aspirante.usuario.username}">
+                                    mila@kunis.com
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default" th:if="${aspirante.usuario.isActive()}">Activo</span>
+                                    <span class="label label-default" th:unless="${aspirante.usuario.isActive()}">Inactivo</span>
+                                </td>
+                                <td th:text="${aspirante.dni}">
+                                    30451781
+                                </td>
+                                <td style="width: 20%;">
+                                    <a href="#" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+									</span>
+                                    </a>
+                                    <a href="#" class="table-link danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="pagination pull-right">
+                        <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!------------------------->
+
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"

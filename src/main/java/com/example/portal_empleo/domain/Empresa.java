@@ -21,7 +21,7 @@ public class Empresa {
     
     private String razonSocial;
     private String cuil;
-    private int telefono;
+    private Integer telefono;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usuario")

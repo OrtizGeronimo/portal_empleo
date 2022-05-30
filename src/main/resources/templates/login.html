@@ -19,11 +19,11 @@
             <input type="radio" id="emp" name="fav_language" value="Empresa" onclick="changeForm('emp')">
             <label for="emp">Empresa</label>
         </div>
-        <form method="post" th:action="@{/candidate/register}" name="register-form" th:object="${aspirante}" class="register-form-candidate">
-            <input class="input" type="text" name="nombre" placeholder="Nombre" th:field="*{nombre}">
-            <input class="input" type="text" name="apellido" placeholder="Apellido" th:field="*{apellido}">
-            <input class="input" type="text" name="edad" placeholder="Edad" required="" th:field="*{edad}">
-            <input class="input" type="text" name="txt" placeholder="DNI" required="" th:field="*{dni}">
+        <form method="post" th:action="@{/candidate/register}" name="register-form" value="" required="" th:object="${aspirante}" class="register-form-candidate">
+            <input class="input" type="text" name="nombre" placeholder="Nombre" required="" value="" th:field="*{nombre}">
+            <input class="input" type="text" name="apellido" placeholder="Apellido" required="" data-value="" th:field="*{apellido}">
+            <input class="input" type="text" name="edad" placeholder="Edad" required="" data-value="" th:field="*{edad}">
+            <input class="input" type="text" name="txt" placeholder="DNI"  required=""  th:field="*{dni}">
             <input type="text" name="email" placeholder="Email" required="">
             <input type="password" name="psw" placeholder="Password" required="">
             <button type="submit">Sign up</button>
@@ -32,11 +32,11 @@
         <form method="post" th:action="@{/company/register}" name="register-form" th:object="${empresa}" class="register-form-company">
 
 
-            <input class="input"  type="text" name="rs" placeholder="Razón Social">
-            <input class="input"  type="text" name="cuil" placeholder="CUIL">
-            <input class="input"  type="text" name="tel" placeholder="Teléfono" required="">
-            <input type="text" name="txt" placeholder="Email" required="">
-            <input type="password" name="pswd" placeholder="Password" required="">
+            <input class="input"  type="text" name="rs" placeholder="Razón Social" required="" th:field="*{razonSocial}">
+            <input class="input"  type="text" name="cuil" placeholder="CUIL" required="" th:field="*{cuil}">
+            <input class="input"  type="text" name="tel" placeholder="Teléfono" required="" data-value="" th:field="*{telefono}">
+            <input type="text" name="email" placeholder="Email" required="">
+            <input type="password" name="psw" placeholder="Password" required="">
             <button>Sign up</button>
 
         </form>
