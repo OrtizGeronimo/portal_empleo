@@ -22,7 +22,7 @@ public class Anuncio {
 
     private String titulo;
     private String descripcion;
-    private Date fechaPublicacion;
+    private String fechaPublicacion;
     private String estadoAnuncio;
 
     @ManyToOne(fetch = FetchType.EAGER)

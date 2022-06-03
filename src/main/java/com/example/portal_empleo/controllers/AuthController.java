@@ -37,27 +37,9 @@ public class AuthController {
         return "Views/inicio";
     }
 
-    @GetMapping("/busqueda")
+    @GetMapping("/search")
     public String busqueda(Model model, @RequestParam String word) {
-
         model.addAttribute("busqueda", word);
         return "Views/hola2";
-    }
-
-    @GetMapping("aspirante/cuenta")
-    public String aspiranteProfile(Model model){
-
-        return "Views/aspirante";
-    }
-
-    @GetMapping("empresa/cuenta")
-    public String companyProfile(){
-        return "Views/empresa";
-    }
-
-    @GetMapping("aspirante/editar")
-    public String aspiranteEditar(Model model){
-
-        return "Views/editar";
     }
 }

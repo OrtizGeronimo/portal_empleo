@@ -37,22 +37,20 @@ public class UsuarioService implements UserDetailsService {
         Optional<Usuario> resp = usuarioRepository.findByUsername(username);
         if(resp.isPresent()) {
             Usuario usuario = resp.get();
-            List<GrantedAuthority> permisos = new ArrayList<>();
-
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+usuario.getPermiso());
-            permisos.add(p1);
+            List<GrantedAuthority> roles = new ArrayList<>();
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+usuario.getRol());
+            roles.add(p1);
             //esto me permite guardar el usuario logueado para usarlo mas tarde
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession();
             session.setAttribute("usuariossession", usuario);
-
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String encodedPassword = passwordEncoder.encode(usuario.getPassword());
 
-            User user = new User(usuario.getUsername(), encodedPassword ,permisos);
+            User user = new User(usuario.getUsername(), encodedPassword ,roles);
             return user;
         }
-
-        return null;}
+        return null;
+    }
 
 }
