@@ -39,7 +39,6 @@ public class AspiranteService {
     public Aspirante updateOne(Aspirante entity, Integer id){
         Optional<Aspirante> optional = aspiranteRepository.findById(id);
         Aspirante aspirante = optional.get();
-        System.out.println("SE EJECUTÓ");
         aspirante = aspiranteRepository.save(entity);
         return aspirante;
     }

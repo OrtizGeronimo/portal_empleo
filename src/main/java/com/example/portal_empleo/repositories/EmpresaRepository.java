@@ -1,9 +1,18 @@
 package com.example.portal_empleo.repositories;
 
+import com.example.portal_empleo.domain.Anuncio;
 import com.example.portal_empleo.domain.Empresa;
+import com.example.portal_empleo.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Integer> {
+    @Query(value = "SELECT * FROM empresa WHERE empresa.fk_usuario = :id",nativeQuery = true)
+        Optional<Empresa> findByUser(@Param("id") Integer id);
 }

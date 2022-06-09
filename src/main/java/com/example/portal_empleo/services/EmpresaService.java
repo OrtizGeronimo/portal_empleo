@@ -18,7 +18,6 @@ public class EmpresaService {
 
     @Autowired
     EmpresaRepository empresaRepository;
-    AnuncioRepository anuncioRepository;
 
     public boolean save(Empresa empresa, String email, String psw){
         Usuario user = new Usuario();
@@ -36,19 +35,16 @@ public class EmpresaService {
         return empresa.get();
     }
 
+    public Empresa findByUser(Integer id){
+        Optional<Empresa> empresa = empresaRepository.findByUser(id);
+        return empresa.get();
+    }
+
     public Empresa updateOne(Empresa entity, Integer id){
         Optional<Empresa> optional = empresaRepository.findById(id);
         Empresa empresa = optional.get();
-        System.out.println("SE EJECUTÓ");
         empresa = empresaRepository.save(entity);
         return empresa;
     }
 
-    public boolean updateAnnouncement(Anuncio anuncio, Integer id){
-        anuncio.setEstadoAnuncio("activo");
-        anuncio.setFechaPublicacion("HOY");
-        anuncioRepository.save(anuncio);
-        anuncio.setEmpresa(empresaRepository.getById(id));
-        return true;
-    }
 }

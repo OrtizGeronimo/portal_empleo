@@ -32,7 +32,6 @@ public class UsuarioService implements UserDetailsService {
         return null;
     }
 
-
     public UserDetails loadUserByUsername(String username) {
         Optional<Usuario> resp = usuarioRepository.findByUsername(username);
         if(resp.isPresent()) {

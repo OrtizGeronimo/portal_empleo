@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="well well-sm">
-                    <form class="form-horizontal" method="post" th:action="@{/company/announcement/create}" th:object="${anuncio}">
+                    <form class="form-horizontal" method="post" th:action="@{/company/announcement/create/{id}(id=${empresa.id})}" th:object="${anuncio}">
                         <fieldset>
                             <legend class="text-center header">Completá los datos del anuncio</legend>
 
