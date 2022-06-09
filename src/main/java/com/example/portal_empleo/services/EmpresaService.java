@@ -23,6 +23,7 @@ public class EmpresaService {
         Usuario user = new Usuario();
         user.setUsername(email);
         user.setPassword(psw);
+        user.setRol("COMPANY");
         empresa.setUsuario(user);
         if (empresaRepository.save(empresa) != null){
             return true;
