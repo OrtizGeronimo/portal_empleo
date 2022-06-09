@@ -38,21 +38,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="aspirante : ${aspirantes}">
+                        <tr th:each="usuario : ${usuarios}">
                             <td>
                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                <a href="#" class="user-link" th:text="${aspirante.nombre} + ' ' + ${aspirante.apellido}">Mila Kunis</a>
+                                <a href="#" class="user-link" th:text="${usuario.username}>Mila Kunis</a>
                                 <span class="user-subhead">Admin</span>
                             </td>
-                            <td th:text="${aspirante.usuario.username}">
+                            <td th:text="${usuario.rol}">
                                 mila@kunis.com
                             </td>
                             <td class="text-center">
-                                <span class="label label-default" th:if="${aspirante.usuario.isActive()}">Activo</span>
-                                <span class="label label-default" th:unless="${aspirante.usuario.isActive()}">Inactivo</span>
-                            </td>
-                            <td th:text="${aspirante.dni}">
-                                30451781
+                                <span class="label label-default" th:if="${usuario.isActive()}">Activo</span>
+                                <span class="label label-default" th:unless="${usuario.isActive()}">Inactivo</span>
                             </td>
                             <td style="width: 20%;">
                                 <a href="#" class="table-link">

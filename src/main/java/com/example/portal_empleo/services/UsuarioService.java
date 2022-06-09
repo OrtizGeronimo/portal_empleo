@@ -32,6 +32,11 @@ public class UsuarioService implements UserDetailsService {
         return null;
     }
 
+    public List<Usuario> findAllByActive(){
+        List<Usuario> users = usuarioRepository.findAllByActive();
+        return users;
+    }
+
     public UserDetails loadUserByUsername(String username) {
         Optional<Usuario> resp = usuarioRepository.findByUsername(username);
         if(resp.isPresent()) {

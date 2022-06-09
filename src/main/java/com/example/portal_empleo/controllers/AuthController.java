@@ -3,7 +3,6 @@ package com.example.portal_empleo.controllers;
 
 import com.example.portal_empleo.domain.Aspirante;
 import com.example.portal_empleo.domain.Empresa;
-import com.example.portal_empleo.domain.Usuario;
 import com.example.portal_empleo.services.AnuncioService;
 import com.example.portal_empleo.services.AspiranteService;
 import com.example.portal_empleo.services.UsuarioService;
@@ -12,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @Controller
@@ -40,10 +37,10 @@ public class AuthController {
         return "Views/inicio";
     }
 
-    @GetMapping("/aspirantes")
-    public String viewAspirante(Model model){
-        model.addAttribute("aspirantes", aspiranteService.findAll());
-        return "Views/aspirantes";
+    @GetMapping("/users")
+    public String viewUsers(Model model){
+        model.addAttribute("usuarios", usuarioService.findAllByActive());
+        return "Views/usuarios";
     }
 
     @GetMapping("/search")

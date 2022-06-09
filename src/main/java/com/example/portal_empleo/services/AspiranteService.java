@@ -1,6 +1,7 @@
 package com.example.portal_empleo.services;
 
 import com.example.portal_empleo.domain.Aspirante;
+import com.example.portal_empleo.domain.Empresa;
 import com.example.portal_empleo.domain.Usuario;
 import com.example.portal_empleo.repositories.AspiranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class AspiranteService {
         Aspirante aspirante = optional.get();
         aspirante = aspiranteRepository.save(entity);
         return aspirante;
+    }
+
+    public Aspirante findByUser(Integer id){
+        Optional<Aspirante> aspirante = aspiranteRepository.findByUser(id);
+        return aspirante.get();
     }
 
 

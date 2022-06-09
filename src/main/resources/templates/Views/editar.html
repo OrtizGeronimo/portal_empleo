@@ -32,7 +32,7 @@
                 </div>
                 <h3>Información personal</h3>
 
-                <form class="form-horizontal" role="form" th:action="@{/candidate/edit}" th:object="${aspirante}" method="post">
+                <form class="form-horizontal" role="form" th:action="@{/candidate/edit/{id}(id=${aspirante.id})}" th:object="${aspirante}" method="post">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Nombre/s</label>
                         <div class="col-lg-8">
