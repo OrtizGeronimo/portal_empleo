@@ -1,5 +1,6 @@
 package com.example.portal_empleo.repositories;
 
+import com.example.portal_empleo.domain.Empresa;
 import com.example.portal_empleo.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,5 +18,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
     @Query(value = "SELECT * FROM usuario WHERE usuario.isActive = true",nativeQuery = true)
     List<Usuario> findAllByActive();
-
 }

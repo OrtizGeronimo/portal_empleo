@@ -1,0 +1,6 @@
+<div th:fragment="_cardAnuncios" class="card" th:each="anuncio : ${anuncios}">
+  <div class="card-body">
+    <h5 class="card-title" th:text="${anuncio.titulo}">Card title</h5>
+    <p class="card-text"><span th:text="${anuncio.descripcion}"></span></p>
+  </div>
+</div>
