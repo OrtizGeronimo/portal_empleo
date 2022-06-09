@@ -37,7 +37,7 @@ public class UsuarioService implements UserDetailsService {
         if(resp.isPresent()) {
             Usuario usuario = resp.get();
             List<GrantedAuthority> roles = new ArrayList<>();
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+usuario.getRol());
+            GrantedAuthority p1 = new SimpleGrantedAuthority(usuario.getRol());
             roles.add(p1);
             //esto me permite guardar el usuario logueado para usarlo mas tarde
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();

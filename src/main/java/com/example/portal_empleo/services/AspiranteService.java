@@ -19,6 +19,7 @@ public class AspiranteService {
         Usuario user = new Usuario();
         user.setUsername(email);
         user.setPassword(psw);
+        user.setRol("CANDIDATE");
         aspirante.setUsuario(user);
         if (aspiranteRepository.save(aspirante) != null){
             return true;
