@@ -58,13 +58,15 @@ public class EmpresaController {
 
     @GetMapping("/announcement/create")
     public String getViewAnnouncement(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = auth.getPrincipal();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = null;
         if (principal instanceof UserDetails){
-            Usuario user = usuarioService.findByUsername(((UserDetails) principal).getUsername());
-            model.addAttribute("empresa", empresaService.findByUser(user.getId()));
-            model.addAttribute("anuncio", new Anuncio());
-        } //???????
+            userDetails = (UserDetails) principal;
+        }
+        String username = userDetails.getUsername();
+        Usuario user = usuarioService.findByUsername(username);
+        model.addAttribute("empresa", empresaService.findByUser(user.getId()));
+        model.addAttribute("anuncio", new Anuncio());
         return "Views/Formularios/anuncio";
     }
 
@@ -75,8 +77,8 @@ public class EmpresaController {
     }
 
     @GetMapping("announcement/view")
-    public String viewAnnouncements(Model model, Integer id){
-        model.addAttribute("anuncios", anuncioService.findByCompanyId(1));
+    public String viewAnnouncements(Model model, @PathVariable("id") Integer id){
+        model.addAttribute("anuncios", anuncioService.findByCompanyId(id));
         return "Views/announcements";
     }
 
