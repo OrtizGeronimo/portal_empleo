@@ -32,6 +32,10 @@ public class UsuarioService implements UserDetailsService {
         return null;
     }
 
+    public List<Usuario> findAll(){
+        return usuarioRepository.findAll();
+    }
+
     public List<Usuario> findAllByActive(){
         List<Usuario> users = usuarioRepository.findAllByActive();
         return users;

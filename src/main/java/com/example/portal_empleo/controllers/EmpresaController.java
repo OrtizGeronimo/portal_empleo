@@ -77,7 +77,7 @@ public class EmpresaController {
         return "Views/aspirante";
     }
 
-    @GetMapping("announcement/view")
+    @GetMapping("announcement/view/{id}")
     public String viewAnnouncements(Model model, @PathVariable("id") Integer id){
         model.addAttribute("anuncios", anuncioService.findByCompanyId(id));
         return "Views/announcements";
