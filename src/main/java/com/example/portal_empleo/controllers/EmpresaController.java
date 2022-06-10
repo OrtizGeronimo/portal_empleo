@@ -2,6 +2,7 @@ package com.example.portal_empleo.controllers;
 
 
 
+import com.example.portal_empleo.config.CurrentUser;
 import com.example.portal_empleo.domain.Anuncio;
 import com.example.portal_empleo.domain.Aspirante;
 import com.example.portal_empleo.domain.Empresa;
@@ -58,12 +59,12 @@ public class EmpresaController {
 
     @GetMapping("/announcement/create")
     public String getViewAnnouncement(Model model){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetails userDetails = null;
-        if (principal instanceof UserDetails){
-            userDetails = (UserDetails) principal;
-        }
-        String username = userDetails.getUsername();
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        UserDetails userDetails = null;
+//        if (principal instanceof UserDetails){
+//            userDetails = (UserDetails) principal;
+//        }
+        String username = CurrentUser.getCurrentUser();
         Usuario user = usuarioService.findByUsername(username);
         model.addAttribute("empresa", empresaService.findByUser(user.getId()));
         model.addAttribute("anuncio", new Anuncio());

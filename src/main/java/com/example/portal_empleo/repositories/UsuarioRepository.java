@@ -16,6 +16,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
     @Query(value = "SELECT * FROM usuario WHERE  usuario.username = :username",nativeQuery = true)
     Optional<Usuario> findByUsername(@Param("username") String username);
 
-    @Query(value = "SELECT * FROM usuario WHERE usuario.isActive = true",nativeQuery = true)
+    @Query(value = "SELECT * FROM usuario WHERE usuario.is_active = TRUE",nativeQuery = true)
     List<Usuario> findAllByActive();
 }
