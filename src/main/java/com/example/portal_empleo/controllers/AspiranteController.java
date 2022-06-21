@@ -1,5 +1,6 @@
 package com.example.portal_empleo.controllers;
 
+import com.example.portal_empleo.config.CurrentUser;
 import com.example.portal_empleo.domain.Aspirante;
 import com.example.portal_empleo.domain.Empresa;
 import com.example.portal_empleo.domain.Usuario;
@@ -35,7 +36,10 @@ public class AspiranteController {
     @GetMapping("/account")
     public String aspiranteProfile(Model model){
         try{
-            return "Views/aspirante";
+            String username = CurrentUser.getCurrentUser();
+            Usuario user = usuarioService.findByUsername(username);
+            model.addAttribute("aspirante", aspiranteService.findByUser(user.getId()));
+            return "Views/Aspirantes/aspirante";
         } catch(Exception e){
             model.addAttribute("error", e.getMessage());
             return "error";
@@ -53,7 +57,7 @@ public class AspiranteController {
             String username = userDetails.getUsername();
             Usuario user = usuarioService.findByUsername(username);
             model.addAttribute("aspirante", aspiranteService.findByUser(user.getId()));
-            return "Views/editar";
+            return "Views/Aspirantes/editar";
         }catch (Exception e){
             model.addAttribute("error", e.getMessage());
             return "error";
@@ -64,7 +68,7 @@ public class AspiranteController {
     public String aspiranteEditar(Model model, @ModelAttribute Aspirante aspirante, @PathVariable("id") Integer id){
         try{
             aspiranteService.updateOne(aspirante,id);
-            return "Views/editar";
+            return "Views/Aspirantes/aspirante";
         }
         catch (Exception e){
             model.addAttribute("error", e.getMessage());

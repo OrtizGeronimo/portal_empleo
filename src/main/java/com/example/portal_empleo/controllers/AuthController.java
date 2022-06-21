@@ -27,6 +27,8 @@ public class AuthController {
     @Autowired
     AspiranteService aspiranteService;
     @Autowired
+    EmpresaService empresaService;
+    @Autowired
     AnuncioService anuncioService;
     @Autowired
     EmpresaService empresaService;
@@ -40,6 +42,7 @@ public class AuthController {
 
     @GetMapping("/inicio")
     public String inicio(Model model){
+<<<<<<< Updated upstream
         String username = CurrentUser.getCurrentUser();
         Usuario user = usuarioService.findByUsername(username);
         String userRole = user.getRol();
@@ -58,6 +61,18 @@ public class AuthController {
             return "Views/Company/inicio";
         }
         return "/error";
+=======
+        model.addAttribute("anuncios", anuncioService.findAll());
+        String username = CurrentUser.getCurrentUser();
+        Usuario user = usuarioService.findByUsername(username);
+        Empresa empresa = empresaService.findByUser(user.getId());
+        if(empresa!=null){
+            model.addAttribute("empresa", empresa);
+            return "Views/inicio";
+        }
+        model.addAttribute("aspirante", aspiranteService.findByUser(user.getId()));
+        return "Views/inicio";
+>>>>>>> Stashed changes
     }
 
 
