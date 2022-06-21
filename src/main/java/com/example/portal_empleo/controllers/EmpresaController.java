@@ -11,9 +11,6 @@ import com.example.portal_empleo.services.AnuncioService;
 import com.example.portal_empleo.services.EmpresaService;
 import com.example.portal_empleo.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -80,7 +77,7 @@ public class EmpresaController {
     @GetMapping("announcement/view/{id}")
     public String viewAnnouncements(Model model, @PathVariable("id") Integer id){
         model.addAttribute("anuncios", anuncioService.findByCompanyId(id));
-        return "Views/announcements";
+        return "Views/Empresas/announcements";
     }
 
 
