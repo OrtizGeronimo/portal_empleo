@@ -30,8 +30,6 @@ public class AuthController {
     EmpresaService empresaService;
     @Autowired
     AnuncioService anuncioService;
-    @Autowired
-    EmpresaService empresaService;
 
     @GetMapping("/login")
     public String loginPrincipal(Model model){
@@ -42,7 +40,6 @@ public class AuthController {
 
     @GetMapping("/inicio")
     public String inicio(Model model){
-<<<<<<< Updated upstream
         String username = CurrentUser.getCurrentUser();
         Usuario user = usuarioService.findByUsername(username);
         String userRole = user.getRol();
@@ -53,29 +50,15 @@ public class AuthController {
         } else if (userRole.equalsIgnoreCase("CANDIDATE")){
             model.addAttribute("anuncios", anuncioService.findAll());
             return "Views/Candidate/inicio";
-        } else if (userRole.equalsIgnoreCase("COMPANY")) {
-            int userId = user.getId();
-            Empresa emp = empresaService.findByUser(userId);
-            model.addAttribute("anuncios", anuncioService.findByCompanyId(emp.getId()));
-            model.addAttribute("empresa", emp);
-            return "Views/Company/inicio";
-        }
-        return "/error";
-=======
-        model.addAttribute("anuncios", anuncioService.findAll());
-        String username = CurrentUser.getCurrentUser();
-        Usuario user = usuarioService.findByUsername(username);
-        Empresa empresa = empresaService.findByUser(user.getId());
-        if(empresa!=null){
-            model.addAttribute("empresa", empresa);
-            return "Views/inicio";
-        }
-        model.addAttribute("aspirante", aspiranteService.findByUser(user.getId()));
-        return "Views/inicio";
->>>>>>> Stashed changes
+            } else if (userRole.equalsIgnoreCase("COMPANY")) {
+                int userId = user.getId();
+                Empresa emp = empresaService.findByUser(userId);
+                model.addAttribute("anuncios", anuncioService.findByCompanyId(emp.getId()));
+                model.addAttribute("empresa", emp);
+                return "Views/Company/inicio";
+            }
+        return "error";
     }
-
-
 
     @GetMapping("/search")
     public String busqueda(Model model, @RequestParam(value = "query", required = false) String word) {
