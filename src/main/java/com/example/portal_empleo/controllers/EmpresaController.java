@@ -56,11 +56,6 @@ public class EmpresaController {
 
     @GetMapping("/announcement/create")
     public String getViewAnnouncement(Model model){
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        UserDetails userDetails = null;
-//        if (principal instanceof UserDetails){
-//            userDetails = (UserDetails) principal;
-//        }
         String username = CurrentUser.getCurrentUser();
         Usuario user = usuarioService.findByUsername(username);
         model.addAttribute("empresa", empresaService.findByUser(user.getId()));
@@ -71,7 +66,7 @@ public class EmpresaController {
     @PostMapping("announcement/create/{id}")
     public String createAnnouncement(@ModelAttribute Anuncio anuncio, @PathVariable("id") Integer id){
         anuncioService.saveAnnouncement(anuncio, id);
-        return "Views/aspirante";
+        return "Views/Company/inicio";
     }
 
     @GetMapping("announcement/view/{id}")
