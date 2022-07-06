@@ -47,5 +47,4 @@ public class EmpresaService {
         empresa = empresaRepository.save(entity);
         return empresa;
     }
-
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Editar Empresa</title>
+</head>
+<body>
+<nav th:replace="Components/navbarCompany :: nav_bar"></nav>
+<div class="container bootstrap snippets bootdey my-2">
+    <h1 class="text-primary">Editar</h1>
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <div class="text-center">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                <h6>Cambiar foto...</h6>
+
+                <input type="file" class="form-control">
+            </div>
+        </div>
+
+        <!-- edit form column -->
+        <div class="col-md-9 personal-info">
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                This is an <strong>.alert</strong>. Use this to show important messages to the user.
+            </div>
+            <h3>Información personal</h3>
+
+            <form class="form-horizontal" role="form" th:action="@{/company/edit/{id}(id=${empresa.id})}" th:object="${empresa}" method="post">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Nombre/s</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="" placeholder="Razón Social..." th:field="*{razonSocial}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Apellido</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="" placeholder="Cuil..." th:field="*{cuil}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">DNI</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="" placeholder="Telefono..." th:field="*{telefono}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input class="form-control" type="submit" value="" placeholder="Enviar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
