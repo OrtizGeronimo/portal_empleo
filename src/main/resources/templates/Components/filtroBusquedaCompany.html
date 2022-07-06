@@ -1,0 +1,26 @@
+<form  th:fragment="_filtroBusqueda" th:action="@{/company/filter}" class="career-form mb-60" method="post">
+    <div class="row">
+        <div class="col-md-6 col-lg-3 my-3">
+            <div class="select-container">
+                <label>
+                    <input type="date" class="custom-select" name="date_publication">
+                </label>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 my-3">
+            <div class="select-container">
+                <select class="custom-select" name="modalidad">
+                    <option selected="">Modalidad</option>
+                    <option value="Presencial">Presencial</option>
+                    <option value="Mixto">Mixto</option>
+                    <option value="Remoto">Remoto</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 my-3">
+            <button>
+                <input type="submit" class="btn btn-lg btn-block btn-light btn-custom" id="search-submit" placeholder="Buscar">
+            </button>
+        </div>
+    </div>
+</form>
