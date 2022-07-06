@@ -1,0 +1,12 @@
+<nav th:fragment="nav_bar" class="navbar navbar-light justify-content-between" style="background-color: #9962CB;">
+    <a class="navbar-brand mx-5" th:href="@{/inicio}">Portal de Empleo</a>
+    <div class="d-flex ">
+        <form class="form-inline d-flex mx-3" th:action="@{/search}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Puesto, empresa" aria-label="Search" name="query">
+            <button class="btn btn btn-outline-dark mx-2 my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <a class="mx-2 p-2 mi-perfil" th:href="@{/company/account}">Mi perfil</a>
+        <a href="mx-2 p-2" th:href="@{/company/announcement/create}">Crear Anuncio!</a>
+    </div>
+    </div>
+</nav>

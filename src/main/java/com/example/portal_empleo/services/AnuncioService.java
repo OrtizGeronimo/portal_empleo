@@ -1,28 +1,18 @@
 package com.example.portal_empleo.services;
 
 import com.example.portal_empleo.domain.Anuncio;
+import com.example.portal_empleo.domain.Empresa;
 import com.example.portal_empleo.repositories.AnuncioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AnuncioService {
 
     @Autowired
     AnuncioRepository anuncioRepository;
-    @Autowired
-    EmpresaService empresaService;
-
-    public boolean saveAnnouncement(Anuncio anuncio, Integer id){
-        anuncio.setEstadoAnuncio("activo");
-        anuncio.setEmpresa(empresaService.findById(id));
-        anuncioRepository.save(anuncio);
-        return true;
-    }
 
     public List<Anuncio> findAll(){
         List<Anuncio> anuncios = anuncioRepository.findAll();
@@ -47,5 +37,24 @@ public class AnuncioService {
     public List<Anuncio> findByDateAndMod(String fecha, String modalidad){
         List<Anuncio> anuncios = anuncioRepository.findByDateAndMod(fecha, modalidad);
         return anuncios;
+    }
+
+    public List<Anuncio> filterCompanyAnnouncements(Integer id, String fecha, String modalidad){
+        List<Anuncio> anuncios = anuncioRepository.filterCompanyAnnouncements(id,fecha,modalidad);
+        return anuncios;
+    }
+
+    public boolean saveAnnouncement(Anuncio anuncio, Empresa empresa){
+        anuncio.setEstadoAnuncio("activo");
+        Date date = new Date();
+        anuncio.setFechaPublicacion(date);
+        anuncio.setEmpresa(empresa);
+        anuncioRepository.save(anuncio);
+        return true;
+    }
+
+    public boolean deleteAnnouncement(Integer id){
+        anuncioRepository.deleteById(id);
+        return true;
     }
 }

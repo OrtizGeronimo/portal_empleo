@@ -38,11 +38,13 @@ public class AspiranteService {
         return aspirante.get();
     }
 
-    public Aspirante updateOne(Aspirante entity, Integer id){
-        Optional<Aspirante> optional = aspiranteRepository.findById(id);
-        Aspirante aspirante = optional.get();
-        aspirante = aspiranteRepository.save(entity);
-        return aspirante;
+    public boolean saveAspirante(Aspirante aspirante){
+        try{
+            aspiranteRepository.save(aspirante);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
     public Aspirante findByUser(Integer id){

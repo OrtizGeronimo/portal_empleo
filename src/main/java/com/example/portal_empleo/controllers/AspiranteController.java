@@ -62,7 +62,6 @@ public class AspiranteController {
             //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             //Date fecha = formatter.parse(date);
             //System.out.println(date);
-            System.out.println(fecha);
             model.addAttribute("anuncios", anuncioService.findByDateAndMod(fecha, modalidad));
             return "Views/search";
         } catch(Exception e){
@@ -90,9 +89,9 @@ public class AspiranteController {
     }
 
     @PostMapping("/edit")
-    public String aspiranteEditar(Model model, @ModelAttribute Aspirante aspirante, @PathVariable("id") Integer id){
+    public String aspiranteEditar(Model model, @ModelAttribute Aspirante aspirante){
         try{
-            aspiranteService.updateOne(aspirante,id);
+            aspiranteService.saveAspirante(aspirante);
             return "Views/Candidate/aspirante";
         }
         catch (Exception e){
