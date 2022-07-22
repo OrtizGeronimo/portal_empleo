@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Currency;
-
 
 @Controller
 @RequestMapping("")
@@ -62,7 +60,23 @@ public class AuthController {
 
     @GetMapping("/search")
     public String busqueda(Model model, @RequestParam(value = "query", required = false) String word) {
-        model.addAttribute("anuncios", anuncioService.findByWord(word));
-        return "Views/search";
+        try{
+            String username = CurrentUser.getCurrentUser();
+            Usuario user = usuarioService.findByUsername(username);
+            String userRole = user.getRol();
+            if (userRole.equalsIgnoreCase("ADMIN")){
+                model.addAttribute("anuncios", anuncioService.findByWord(word));
+                return "Views/Admin/search";
+            } else if(userRole.equalsIgnoreCase("COMPANY")){
+                model.addAttribute("anuncios", anuncioService.findByWord(word));
+                return "Views/Company/search";
+            }else{
+                model.addAttribute("anuncios", anuncioService.findByWord(word));
+                return "Views/Candidate/search";
+            }
+        }catch (Exception e){
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
     }
 }
