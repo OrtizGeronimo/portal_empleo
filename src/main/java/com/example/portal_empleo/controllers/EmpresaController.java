@@ -11,6 +11,8 @@ import com.example.portal_empleo.services.AnuncioService;
 import com.example.portal_empleo.services.EmpresaService;
 import com.example.portal_empleo.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +57,6 @@ public class EmpresaController {
     @GetMapping("detail/{id}") //Ver detalle de un anuncio buscado desde perfil de empresa (no incluye la aplicacion)
     public String viewDetailAnnouncement(Model model, @PathVariable("id") Integer id){
         try{
-            String username = CurrentUser.getCurrentUser();
             model.addAttribute("anuncio", anuncioService.findById(id));
             return "Views/Company/viewAnnouncement";
         }catch (Exception e){
@@ -122,8 +123,10 @@ public class EmpresaController {
             Usuario user = usuarioService.findByUsername(username);
             Empresa empresa = empresaService.findByUser(user.getId());
             anuncioService.saveAnnouncement(anuncio, empresa);
+            PageRequest pageRequest = PageRequest.of(0,5);
+            Page<Anuncio> pageAnuncio = anuncioService.findByCompanyId(empresa.getId(), pageRequest);
             model.addAttribute("empresa", empresa);
-            model.addAttribute("anuncios", anuncioService.findByCompanyId(empresa.getId()));
+            model.addAttribute("anuncios", pageAnuncio.getContent());
             return "Views/Company/inicio";
         }catch (Exception e){
             model.addAttribute("error", e.getMessage());
@@ -149,8 +152,10 @@ public class EmpresaController {
             Usuario user = usuarioService.findByUsername(username);
             Empresa empresa = empresaService.findByUser(user.getId());
             anuncioService.saveAnnouncement(anuncio,empresa);
+            PageRequest pageRequest = PageRequest.of(0,5);
+            Page<Anuncio> pageAnuncio = anuncioService.findByCompanyId(empresa.getId(), pageRequest);
             model.addAttribute("empresa", empresa);
-            model.addAttribute("anuncios", anuncioService.findByCompanyId(empresa.getId()));
+            model.addAttribute("anuncios", pageAnuncio.getContent());
             return "Views/Company/inicio";
         } catch (Exception e){
             model.addAttribute("error", e.getMessage());
@@ -176,8 +181,10 @@ public class EmpresaController {
             String username = CurrentUser.getCurrentUser();
             Usuario user = usuarioService.findByUsername(username);
             Empresa empresa = empresaService.findByUser(user.getId());
+            PageRequest pageRequest = PageRequest.of(0,5);
+            Page<Anuncio> pageAnuncio = anuncioService.findByCompanyId(empresa.getId(), pageRequest);
             model.addAttribute("empresa", empresa);
-            model.addAttribute("anuncios", anuncioService.findByCompanyId(empresa.getId()));
+            model.addAttribute("anuncios", pageAnuncio.getContent());
             return "Views/Company/inicio";
         } catch (Exception e){
             model.addAttribute("error", e.getMessage());

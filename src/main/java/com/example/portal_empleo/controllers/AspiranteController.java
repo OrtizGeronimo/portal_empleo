@@ -54,7 +54,7 @@ public class AspiranteController {
     public String filter(Model model, @RequestParam("date_publication") String fecha, @RequestParam("modalidad") String modalidad) {
         try{
             model.addAttribute("anuncios", anuncioService.findByDateAndMod(fecha, modalidad));
-            return "Views/search";
+            return "Views/Candidate/search";
         } catch(Exception e){
             model.addAttribute("error", e.getMessage());
             return "error";
@@ -100,7 +100,7 @@ public class AspiranteController {
         }
     }
 
-    @PostMapping("/apply/{id}") //aplicar a un anuncio
+    /*@PostMapping("/apply/{id}") //aplicar a un anuncio
     public String aspiranteApply(Model model, @ModelAttribute Anuncio anuncio, @PathVariable("id") Integer id){
         try{
             Aspirante aspirante = aspiranteService.findById(id);
@@ -111,6 +111,6 @@ public class AspiranteController {
             model.addAttribute("error", e.getMessage());
             return "error";
         }
-    }
+    }*/
 }
 
