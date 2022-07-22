@@ -4,6 +4,8 @@ import com.example.portal_empleo.domain.Anuncio;
 import com.example.portal_empleo.domain.Empresa;
 import com.example.portal_empleo.repositories.AnuncioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,8 +16,8 @@ public class AnuncioService {
     @Autowired
     AnuncioRepository anuncioRepository;
 
-    public List<Anuncio> findAll(){
-        List<Anuncio> anuncios = anuncioRepository.findAll();
+    public Page<Anuncio> findAll(Pageable pageable){
+        Page<Anuncio> anuncios = anuncioRepository.findAll(pageable);
         return anuncios;
     }
 
@@ -29,8 +31,8 @@ public class AnuncioService {
         return anuncio.get();
     }
 
-    public List<Anuncio> findByCompanyId(Integer id){
-        List<Anuncio> anuncios = anuncioRepository.findByCompanyId(id);
+    public Page<Anuncio> findByCompanyId(Integer id, Pageable pageable){
+        Page<Anuncio> anuncios = anuncioRepository.findByCompanyId(id, pageable);
         return anuncios;
     }
 
