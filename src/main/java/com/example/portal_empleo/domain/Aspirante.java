@@ -32,7 +32,7 @@ public class Aspirante {
 
     private Integer dni;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_usuario")
     private Usuario usuario;
 

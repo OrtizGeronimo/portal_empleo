@@ -18,9 +18,9 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
     @Query(value = "SELECT * FROM anuncio WHERE anuncio.titulo LIKE %:word%", nativeQuery = true)
     List<Anuncio> findByWord(@Param("word") String word);
 
-    @Query(value = "SELECT * FROM anuncio WHERE anuncio.fecha_publicacion LIKE :fecha AND anuncio.modalidad = :word", nativeQuery = true)
+    @Query(value = "SELECT * FROM anuncio WHERE anuncio.fecha_publicacion LIKE :fecha% AND anuncio.modalidad = :word", nativeQuery = true)
     List<Anuncio> findByDateAndMod(@Param("fecha") String fecha, @Param("word") String word);
 
-    @Query(value = "SELECT * FROM anuncio WHERE anuncio.fecha_publicacion LIKE :fecha AND anuncio.modalidad = :word AND anuncio.fk_empresa = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM anuncio WHERE anuncio.fecha_publicacion LIKE :fecha% AND anuncio.modalidad = :word AND anuncio.fk_empresa = :id", nativeQuery = true)
     List<Anuncio> filterCompanyAnnouncements(@Param("id") Integer id, @Param("fecha") String fecha, @Param("word") String word);
 }

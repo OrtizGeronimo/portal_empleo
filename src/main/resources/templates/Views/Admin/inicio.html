@@ -13,9 +13,10 @@
     <title>Inicio</title>
 </head>
 <body>
-<nav th:replace="Components/navbar :: nav_bar"></nav>
+<nav th:replace="Components/navbarCandidate :: nav_bar"></nav>
 
 <div class="title">
+
     <h1>Usuarios</h1>
 </div>
 
@@ -32,8 +33,7 @@
                         <tr>
                             <th><span>Nombre</span></th>
                             <th><span>Email</span></th>
-                            <th class="text-center"><span>Estado</span></th>
-                            <th><span>DNI</span></th>
+                            <th><span>Acciones</span></th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
@@ -41,24 +41,20 @@
                         <tr th:each="usuario : ${usuarios}">
                             <td>
                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                <a href="#" class="user-link" >Mila Kunis</a>
+                                <a href="#" class="user-link" th:text="${usuario.username}">Mila Kunis</a>
                                 <span class="user-subhead" th:text="${usuario.rol}">Admin</span>
                             </td>
                             <td th:text="${usuario.username}">
                                 mila@kunis.com
                             </td>
-                            <td class="text-center">
-                                <span class="label label-default" th:if="${usuario.isActive()}">Activo</span>
-                                <span class="label label-default" th:unless="${usuario.isActive()}">Inactivo</span>
-                            </td>
                             <td style="width: 20%;">
-                                <a href="#" class="table-link">
+                                <a th:href="@{admin/edit/{id}(id = ${usuario.id})}" class="table-link">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 									</span>
                                 </a>
-                                <a href="#" class="table-link danger">
+                                <a th:href="@{admin/delete/{id}(id = ${usuario.id})}" class="table-link danger">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

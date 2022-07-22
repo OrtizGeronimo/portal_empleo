@@ -20,8 +20,5 @@ public class Usuario {
     private String username;
     private String password;
     private String rol;
-    private boolean isActive = true;
-    private String userState;
-
 
 }
