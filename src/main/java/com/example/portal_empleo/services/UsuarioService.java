@@ -24,6 +24,13 @@ public class UsuarioService implements UserDetailsService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    public Usuario findById(Integer id){
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if(usuario.isPresent()){
+            return usuario.get();
+        }
+        return null;
+    }
     public Usuario findByUsername(String username){
         Optional<Usuario> user= usuarioRepository.findByUsername(username);
         if (user.isPresent()){

@@ -26,7 +26,7 @@ public class EmpresaController {
     @Autowired
     AnuncioService anuncioService;
 
-    @PostMapping("/register")
+    @PostMapping("/register") //Se registra la empresa
     public String register(@ModelAttribute Empresa empresa, @RequestParam("email") String email, @RequestParam("psw") String psw, Model model) {
         if (usuarioService.findByUsername(email) != null) {
             return "/error";
@@ -37,21 +37,34 @@ public class EmpresaController {
         return "login";
     }
 
-    @PostMapping("/filter")
+    @PostMapping("/filter") //Busqueda por filtrado por parte de empresa
     public String companyFilter(Model model, @RequestParam("date_publication") String fecha, @RequestParam("modalidad") String modalidad){
         try{
+            System.out.println(fecha);
             String username = CurrentUser.getCurrentUser();
             Usuario user = usuarioService.findByUsername(username);
             Empresa empresa = empresaService.findByUser(user.getId());
             model.addAttribute("anuncios", anuncioService.filterCompanyAnnouncements(empresa.getId(), fecha, modalidad));
-            return "Views/search";
+            return "Views/Company/search";
         }catch (Exception e){
             model.addAttribute("error", e.getMessage());
             return "error";
         }
     }
 
-    @GetMapping("/account")
+    @GetMapping("detail/{id}") //Ver detalle de un anuncio buscado desde perfil de empresa (no incluye la aplicacion)
+    public String viewDetailAnnouncement(Model model, @PathVariable("id") Integer id){
+        try{
+            String username = CurrentUser.getCurrentUser();
+            model.addAttribute("anuncio", anuncioService.findById(id));
+            return "Views/Company/viewAnnouncement";
+        }catch (Exception e){
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+
+    @GetMapping("/account") //ver perfil de empresa
     public String companyProfile(Model model){
         try{
             String username = CurrentUser.getCurrentUser();
@@ -64,7 +77,7 @@ public class EmpresaController {
         }
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/edit") //ver pestaña de edicion de empresa
     public String empresaViewEdit(Model model){
         try{
             String username = CurrentUser.getCurrentUser();
@@ -77,7 +90,7 @@ public class EmpresaController {
         }
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/edit") //editar la informacion de la empresa
     public String empresaEditar(Model model, @ModelAttribute("empresa") Empresa empresa, @PathVariable("id") Integer id){
         try{
             empresaService.updateOne(empresa, id);
@@ -88,7 +101,7 @@ public class EmpresaController {
         }
     }
 
-    @GetMapping("/announcement/create")
+    @GetMapping("/announcement/create") //obtener vista para crear anuncio
     public String getViewAnnouncement(Model model){
         try{
             String username = CurrentUser.getCurrentUser();
@@ -102,7 +115,7 @@ public class EmpresaController {
         }
     }
 
-    @PostMapping("announcement/create")
+    @PostMapping("announcement/create") //crear anuncio
     public String createAnnouncement(Model model, @ModelAttribute Anuncio anuncio){
         try{
             String username = CurrentUser.getCurrentUser();
@@ -118,7 +131,7 @@ public class EmpresaController {
         }
     }
 
-    @GetMapping("announcement/edit/{id}")
+    @GetMapping("announcement/edit/{id}") //obtener vista para editar anuncio
     public String viewEditAnnouncement(Model model, @PathVariable("id") Integer id){
         try{
             model.addAttribute("anuncio", anuncioService.findById(id));
@@ -129,7 +142,7 @@ public class EmpresaController {
         }
     }
 
-    @PostMapping("announcement/edit")
+    @PostMapping("announcement/edit") //editar anuncio
     public String EditAnnouncement(Model model, @ModelAttribute Anuncio anuncio){
         try{
             String username = CurrentUser.getCurrentUser();
@@ -145,7 +158,7 @@ public class EmpresaController {
         }
     }
 
-    @GetMapping("announcement/delete/{id}")
+    @GetMapping("announcement/delete/{id}") //obtener vista para eliminar anuncio
     public String viewDeleteAnnouncement(Model model, @PathVariable("id") Integer id){
         try{
             model.addAttribute("anuncio", anuncioService.findById(id));
@@ -156,7 +169,7 @@ public class EmpresaController {
         }
     }
 
-    @PostMapping("announcement/delete/{id}")
+    @PostMapping("announcement/delete/{id}") //eliminar anuncio
     public String DeleteAnnouncement(Model model, @PathVariable("id") Integer id){
         try{
             anuncioService.deleteAnnouncement(id);
@@ -166,17 +179,6 @@ public class EmpresaController {
             model.addAttribute("empresa", empresa);
             model.addAttribute("anuncios", anuncioService.findByCompanyId(empresa.getId()));
             return "Views/Company/inicio";
-        } catch (Exception e){
-            model.addAttribute("error", e.getMessage());
-            return "error";
-        }
-    }
-
-    @GetMapping("announcement/view/{id}")
-    public String viewAnnouncements(Model model, @PathVariable("id") Integer id){
-        try{
-            model.addAttribute("anuncios", anuncioService.findByCompanyId(id));
-            return "Views/Empresas/announcements";
         } catch (Exception e){
             model.addAttribute("error", e.getMessage());
             return "error";
