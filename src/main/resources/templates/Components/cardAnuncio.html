@@ -1,0 +1,51 @@
+<div th:fragment="_cardAnuncio" class="container bootstrap snippets bootdey my-2">
+    <div class="row">
+        <div class="col-md-9 personal-info">
+            <div  th:object="${anuncio}">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Titulo</label>
+                    <div class="col-lg-8">
+                        <p class="form-control" th:text="*{titulo}"> </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Descripción</label>
+                    <div class="col-lg-8">
+                        <p class="form-control" th:text="*{descripcion}"> </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Fecha de publicación: </label>
+                    <div class="col-lg-8">
+                        <p class="form-control" th:text="*{fechaPublicacion}"> </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Modalidad</label>
+                    <div class="col-lg-8">
+                        <p class="form-control" th:text="*{modalidad}"> </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Empresa</label>
+                    <div class="col-lg-8">
+                        <p class="form-control" th:text="${anuncio.getEmpresa().getRazonSocial()}"> </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Mail</label>
+                    <div class="col-lg-8">
+                        <p class="form-control" th:text="${anuncio.getEmpresa().getUsuario().getUsername()}"> </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Teléfono Empresa</label>
+                    <div class="col-lg-8">
+                        <p class="form-control" th:text="${anuncio.getEmpresa().getTelefono()}"> </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

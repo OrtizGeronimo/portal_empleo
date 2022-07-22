@@ -1,6 +1,8 @@
 package com.example.portal_empleo.repositories;
 
 import com.example.portal_empleo.domain.Anuncio;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,8 +14,11 @@ import java.util.List;
 @Repository
 public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
 
-    @Query(value = "SELECT * FROM anuncio WHERE anuncio.fk_empresa = :id", nativeQuery = true)
-    List<Anuncio> findByCompanyId(@Param("id") Integer id);
+    @Query(
+            value = "SELECT * FROM anuncio WHERE anuncio.fk_empresa = :id",
+            countQuery = "SELECT count(*) FROM anuncio",
+            nativeQuery = true)
+    Page<Anuncio> findByCompanyId(@Param("id") Integer id, Pageable pageable);
 
     @Query(value = "SELECT * FROM anuncio WHERE anuncio.titulo LIKE %:word%", nativeQuery = true)
     List<Anuncio> findByWord(@Param("word") String word);
