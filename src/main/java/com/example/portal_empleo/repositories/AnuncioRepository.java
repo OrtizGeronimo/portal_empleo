@@ -20,8 +20,11 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
             nativeQuery = true)
     Page<Anuncio> findByCompanyId(@Param("id") Integer id, Pageable pageable);
 
-    @Query(value = "SELECT * FROM anuncio WHERE anuncio.titulo LIKE %:word%", nativeQuery = true)
-    List<Anuncio> findByWord(@Param("word") String word);
+    @Query(
+            value = "SELECT * FROM anuncio WHERE anuncio.titulo LIKE %:word%",
+            countQuery = "SELECT count(*) FROM anuncio",
+            nativeQuery = true)
+    Page<Anuncio> findByWord(@Param("word") String word, Pageable pageable);
 
     @Query(value = "SELECT * FROM anuncio WHERE anuncio.fecha_publicacion LIKE :fecha% AND anuncio.modalidad = :word", nativeQuery = true)
     List<Anuncio> findByDateAndMod(@Param("fecha") String fecha, @Param("word") String word);

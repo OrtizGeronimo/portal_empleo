@@ -91,19 +91,32 @@ public class AuthController {
     }
 
     @GetMapping("/search")
-    public String busqueda(Model model, @RequestParam(value = "query", required = false) String word) {
+    public String busqueda(Model model, @RequestParam(value = "query", required = false) String word, @RequestParam Map<String, Object> params) {
         try{
             String username = CurrentUser.getCurrentUser();
             Usuario user = usuarioService.findByUsername(username);
             String userRole = user.getRol();
+            int page = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) -1) : 0;
+            PageRequest pageRequest = PageRequest.of(page, 5);
+            int totalPages;
             if (userRole.equalsIgnoreCase("ADMIN")){
-                model.addAttribute("anuncios", anuncioService.findByWord(word));
+                //model.addAttribute("anuncios", anuncioService.findByWord(word));
                 return "Views/Admin/search";
             } else if(userRole.equalsIgnoreCase("COMPANY")){
-                model.addAttribute("anuncios", anuncioService.findByWord(word));
+                //.addAttribute("anuncios", anuncioService.findByWord(word));
                 return "Views/Company/search";
             }else{
-                model.addAttribute("anuncios", anuncioService.findByWord(word));
+                Page<Anuncio> pageAnuncio = anuncioService.findByWord(word, pageRequest);
+                totalPages = pageAnuncio.getTotalPages();
+                if(totalPages>0){
+                    List<Integer> pages = IntStream.rangeClosed(1,totalPages).boxed().collect(Collectors.toList());
+                    model.addAttribute("pages", pages);
+                }
+                model.addAttribute("anuncios", pageAnuncio.getContent());
+                model.addAttribute("current", page+1);
+                model.addAttribute("prev", page);
+                model.addAttribute("next", page+2);
+                model.addAttribute("last", totalPages);
                 return "Views/Candidate/search";
             }
         }catch (Exception e){

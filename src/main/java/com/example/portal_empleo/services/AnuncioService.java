@@ -21,8 +21,8 @@ public class AnuncioService {
         return anuncios;
     }
 
-    public List<Anuncio> findByWord(String word){
-        List<Anuncio> anuncios = anuncioRepository.findByWord(word);
+    public Page<Anuncio> findByWord(String word, Pageable pageable){
+        Page<Anuncio> anuncios = anuncioRepository.findByWord(word, pageable);
         return anuncios;
     }
 
