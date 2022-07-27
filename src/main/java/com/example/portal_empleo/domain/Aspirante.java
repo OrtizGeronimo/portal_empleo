@@ -32,7 +32,7 @@ public class Aspirante {
 
     private Integer dni;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_usuario")
     private Usuario usuario;
 
@@ -44,4 +44,11 @@ public class Aspirante {
     )
     private List<Habilidad> habilidades = new ArrayList<Habilidad>();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "aspirante_anuncio",
+            joinColumns = @JoinColumn(name = "aspirante_fk"),
+            inverseJoinColumns = @JoinColumn(name = "anuncio_fk")
+    )
+    private List<Anuncio> anuncios = new ArrayList<Anuncio>();
 }

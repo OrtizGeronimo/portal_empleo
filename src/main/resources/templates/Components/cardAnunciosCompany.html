@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="job-right my-4 flex-shrink-0">
-        <a href="#"  class=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-        <a href="#"  class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+        <a th:href="@{company/announcement/edit/{id}(id=${anuncio.id})}"  class=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <a th:href="@{company/announcement/delete/{id}(id=${anuncio.id})}"  class=""><i class="fa fa-trash" aria-hidden="true"></i></a>
     </div>
 </div>

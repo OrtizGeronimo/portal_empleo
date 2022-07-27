@@ -3,6 +3,7 @@ package com.example.portal_empleo.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,7 +23,11 @@ public class Anuncio {
 
     private String titulo;
     private String descripcion;
-    private String fechaPublicacion;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaPublicacion;
+
+    private String modalidad;
     private String estadoAnuncio;
 
     @ManyToOne(fetch = FetchType.EAGER)
