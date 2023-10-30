@@ -12,26 +12,26 @@
     <title th:text="'Empresa:' + ${empresa.razonSocial} + ' - Inicio'">Empresa</title>
 </head>
 <body>
-<nav th:replace="Components/navbarCompany :: nav_bar"></nav>
-<div class="container">
-    <div class="row title-container">
-        <div class="col-lg-10 mx-auto mb-4">
-            <h1 th:text="'Anuncios de ' + ${empresa.razonSocial}">Anuncios</h1>
-        </div>
-    </div>
-
-    <form th:replace="Components/filtroBusquedaCompany :: _filtroBusqueda"></form>
-
-                <div class="filter-result">
-                    <p class="mb-30 ff-montserrat" th:text="'Resultados: ' + ${anuncios.size}">89</p>
-
-                    <div class="card-deck mt-5" th:if="${anuncios.size}">
-                        <div th:replace="Components/cardAnunciosCompany :: _cardAnunciosCompany"></div>
-                    </div>
-                    <div th:unless="${anuncios.size}">
-                        <h2>No hay resultados</h2>
+        <nav th:replace="Components/navbarCompany :: nav_bar"></nav>
+            <div class="container">
+                <div class="row title-container">
+                    <div class="col-lg-10 mx-auto mb-4">
+                        <h1 th:text="'Anuncios de ' + ${empresa.razonSocial}">Anuncios</h1>
                     </div>
                 </div>
+
+                <form th:replace="Components/filtroBusquedaCompany :: _filtroBusqueda"></form>
+
+                            <div class="filter-result">
+                                <p class="mb-30 ff-montserrat" th:text="'Resultados: ' + ${anuncios.size}">89</p>
+
+                                <div class="card-deck mt-5" th:if="${anuncios.size}">
+                                    <div th:replace="Components/cardAnunciosCompany :: _cardAnunciosCompany"></div>
+                                </div>
+                                <div th:unless="${anuncios.size}">
+                                    <h2>No hay resultados</h2>
+                                </div>
+                            </div>
             </div>
 
             <!-- START Pagination -->

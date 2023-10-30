@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/company/**").hasAuthority("COMPANY")
                     .anyRequest().authenticated()
                     .and()
-                    .formLogin().loginPage("/login").loginProcessingUrl("/logincheck").defaultSuccessUrl("/inicio").usernameParameter("username").passwordParameter("password")
+                    .formLogin().loginPage("/login").loginProcessingUrl("/logincheck").defaultSuccessUrl("/").usernameParameter("username").passwordParameter("password")
                     .permitAll()
                     .and()
                     .logout() .invalidateHttpSession(true)
